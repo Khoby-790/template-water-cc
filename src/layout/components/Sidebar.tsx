@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Fragment } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { classNames, routes } from '../../utils'
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 }
 
 const Sidebar = (props: Props) => {
-    const pathname = "/app/"
+    const { pathname } = useLocation()
     return (
         <Fragment>
             <div className="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
@@ -163,24 +164,27 @@ const Sidebar = (props: Props) => {
                             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
                                 {/* <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" --> */}
 
-                                {routes.map((route, routeId) => (
-                                    <a href={route.path} key={routeId} className={classNames(
-                                        route.path === pathname ? "bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md" :
-                                            "text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                                    )}>
+                                {routes.map((route, routeId) => {
+                                    const Icon = route.icon
+                                    return (
+                                        <Link to={route.path} key={routeId} className={classNames(
+                                            route.path === pathname ? "bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md" :
+                                                "text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                                        )}>
 
-                                        {/* <route.icon
-                                            className={classNames(
-                                                route.href === pathname
-                                                    ? "text-white"
-                                                    : "text-green-300 group-hover:text-white",
-                                                "h-6 w-6"
-                                            )}
-                                            aria-hidden="true"
-                                        /> */}
-                                        Dashboard
-                                    </a>
-                                ))}
+                                            <Icon
+                                                className={classNames(
+                                                    route.path === pathname
+                                                        ? "text-gray-500 mr-4 flex-shrink-0 h-6 w-6"
+                                                        : "text-gray-400 group-hover:text-gray-500 mr-4 flex-shrink-0 h-6 w-6",
+                                                    "h-6 w-6"
+                                                )}
+                                                aria-hidden="true"
+                                            />
+                                            {route.name}
+                                        </Link>
+                                    )
+                                })}
 
                             </nav>
                         </div>

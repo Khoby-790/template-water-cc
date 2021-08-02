@@ -1,10 +1,9 @@
-import { ReactNode } from "react";
-import {HomeIcon, ArchiveIcon} from '@heroicons/react/outline';
+import {HomeIcon, ArchiveIcon, UsersIcon, UserGroupIcon, ChartBarIcon} from '@heroicons/react/outline';
 
 type RouteType = {
     name:string;
     path: string;
-    icon: ReactNode;
+    icon: React.FC<React.ComponentProps<'svg'>>;
     description?:string;
 }
 
@@ -12,12 +11,27 @@ export const routes: RouteType[]  = [
     {
         name:"Dashboard",
         path:"/app/",
-        icon:HomeIcon
+        icon: HomeIcon 
+    },
+    {
+        name:"Customers",
+        path:"/app/customers",
+        icon:  UserGroupIcon
+    },
+    {
+        name:"Agents",
+        path:"/app/agents",
+        icon:  UsersIcon
     },
     {
         name:"Bills",
         path:"/app/bills",
-        icon: ArchiveIcon
+        icon:  ArchiveIcon
+    },
+    {
+        name:"Reports",
+        path:"/app/reports",
+        icon:  ChartBarIcon
     }
 ]
 
