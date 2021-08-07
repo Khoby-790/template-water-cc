@@ -128,3 +128,5 @@ const GuageChart = ({ titles = [] }) => {
     </Fragment>
   );
 };
+
+export default GuageChart;
