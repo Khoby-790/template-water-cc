@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import ReactSpeedometer from "react-d3-speedometer";
 
-const GuageChart = () => {
+const GuageChart = ({ titles = [] }) => {
   return (
     <Fragment>
       <div class="mt-2">
